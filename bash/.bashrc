@@ -45,31 +45,12 @@ unset color_prompt force_color_prompt
 
 
 
-# Edit this .bashrc file
-alias ebrc='vim ~/.bashrc'
+BASHRC_ALIASES_DIR=~/config/bash
 
+if [ -f "$BASHRC_ALIASES_DIR/.bash_aliases" ]; then
+    . "$BASHRC_ALIASES_DIR/.bash_aliases"
+fi
 
-
-
-vgpr () { aws s3 ls s3://issacs-gpr-dev/ ;} 
-vlam () { aws s3 ls s3://issacs-lambda-dev/ ;}
-gup-r () { aws s3 cp "$1" "$2" --recursive ;}
-gup () { aws s3 cp "$1" "$2" ;}
-urdate () { aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-"$2"/ --recursive ;}
-urec () { aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/"$2"/ --recursive ;} 
-ufile () { aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/"$2"/ ;}
-udate () { aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-"$2"/ ;} 
-vdate () { aws s3 ls s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ ;}
-vsdate () { aws s3 ls s3://issacs-gpr-dev/Smallbox/IMU_Data/DataLogs-"$1"/ ;}
-dfile () { aws s3 cp "$1" "$2" ;}
-drec () { aws s3 cp "$1" "$2" --recursive ;}
-ddate () { aws s3 cp s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ "$2" --recursive ;}
-dwdate () { aws s3 cp s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ /mnt/c/Users/gabee/Visualization/IMU\ Bin\ Files/"$1"/  --recursive ;}
-dswdate () { aws s3 cp s3://issacs-gpr-dev/Smallbox/IMU_Data/DataLogs-"$1"/ /mnt/c/Users/gabee/Visualization/IMU\ Bin\ Files/"$1"/  --recursive ;}
-lessbin () { xxd "$1" | less ;}
-git-all () { git commit -a -m updates; git push ;}
-time-fix () { sudo service ntp restart ;}
-test16 () { aws s3 cp s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ --recursive ;}
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -148,10 +129,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
