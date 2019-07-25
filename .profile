@@ -1,3 +1,9 @@
+# .profile for Ubuntu on Windows Subsystem For Linux 2
+# ====================================================================
+# - https://github.com/gabriel-wolf/dot-files/
+# - gabeericwolf@gmail.com
+
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
