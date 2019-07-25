@@ -157,3 +157,9 @@ _pip_completion()
 complete -o default -F _pip_completion /usr/bin/python3 -m pip
 # pip bash completion end
 
+
+
+### Fish style bash completion
+# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+#bind 'set show-all-if-ambiguous on'
+#bind 'TAB:menu-complete'
