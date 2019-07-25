@@ -1,9 +1,24 @@
 
-### Git
+### Git ###
 git-all () { git commit -a -m updates; git push ;}
 
 
-### S3 
+### Bash ###
+sourcerc () { source ~/config/bash/.bashrc ;}
+
+
+### Fixes ###
+time-fix () { sudo service ntp restart ;}
+
+
+### File Viewing ###
+lessbin () { xxd "$1" | less ;}
+
+
+### Navigation ###
+
+
+### S3 ###
 # View
 vgpr () { aws s3 ls s3://issacs-gpr-dev/ ;} 
 vlam () { aws s3 ls s3://issacs-lambda-dev/ ;}
@@ -28,19 +43,9 @@ dfile () { aws s3 cp "$1" "$2" ;}
 drec () { aws s3 cp "$1" "$2" --recursive ;}
 
 
-### Testing
+### Testing ###
 test16 () { aws s3 cp s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ --recursive ;}
 
-
-### Fixes
-time-fix () { sudo service ntp restart ;}
-
-
-### File Viewing
-lessbin () { xxd "$1" | less ;}
-
-
-### Navigation
 
 
 
