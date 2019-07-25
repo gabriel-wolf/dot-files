@@ -25,7 +25,6 @@ egrep "^export " ~/.profile | while read e
 end
 
 
-#. ~/.config/fish/config.fish
 
 
 # Fish
@@ -38,15 +37,131 @@ function tfunc -d "test fish function"
     echo $argv[2]
 end
 
-function updatefish -d ""
-
+function updatefish -d "update fish functions"
+    . ~/.config/fish/config.fish
+end
 
 
 # Git
 # --------------------------------------------------------------------
 
+function git-all -d "commit all and push current directory"
+    git commit -a -m updates
+    git push
+end
 
-#function git-all -d "commit all and push current directory"
-#    git commit -a -m updates
-#    git push
-#end
+
+# Bash
+# --------------------------------------------------------------------
+
+function sourcerc -d "apply bashrc changes to current bash session"
+    source ~/config/bash/.bashrc
+end
+
+
+# Fix
+# --------------------------------------------------------------------
+
+function time-fix -d "fix aws time skewed error" 
+    sudo service ntp restart 
+end
+
+
+# File Viewing
+# --------------------------------------------------------------------
+
+function lessbin -d "open a text output of a .bin file in less" 
+    xxd "$1" | less 
+end
+
+
+# Navigation
+# --------------------------------------------------------------------
+
+
+
+# S3 Bucket
+# --------------------------------------------------------------------
+
+function vgpr -d "view the base of the gpr bucket"
+    aws s3 ls s3://issacs-gpr-dev/
+end
+
+function vlam -d "view the base of the lambda bucket"
+    aws s3 ls s3://issacs-lambda-dev/
+end
+
+
+function gup-r -d "copy something to somewhere recursive"
+    aws s3 cp "$1" "$2" --recursive 
+}
+
+function gup -d "copy something to somewhere "
+    aws s3 cp "$1" "$2" 
+}
+
+function urec -d "upload something to somewhere on the ammobox lambda dev bucket recursively"
+    aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/"$2"/ --recursive 
+} 
+
+function ufile -d "upload something to somewhere on the ammobox lambda dev bucket"
+    aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/"$2"/ 
+}
+
+
+function vdate -d "view the contents of a date for the gpr bucket ammobox"
+    aws s3 ls s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ 
+}
+
+function vsdate -d "view the contents of a date for the gpr bucket smallbox"
+    aws s3 ls s3://issacs-gpr-dev/Smallbox/IMU_Data/DataLogs-"$1"/ 
+}
+
+function urdate -d "upload something to some date in the lambda bucket recursively"
+    aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-"$2"/ --recursive 
+}
+
+function udate -d "upload something to some date in the lambda bucket"
+    aws s3 cp "$1" s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-"$2"/ 
+} 
+
+
+function ddate -d "download all the files of some date to somewhere recursively"
+    aws s3 cp s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ "$2" --recursive 
+}
+
+function dwdate -d "download the files from some date ammobox gpr bucket to the visualization folder for that same date on the host machine recursively"
+    aws s3 cp s3://issacs-gpr-dev/Ammobox/IMU_Data/DataLogs-"$1"/ /mnt/c/Users/gabee/Visualization/IMU\ Bin\ Files/"$1"/  --recursive 
+}
+
+function dswdate -d "download the files from some date smallbox gpr bucket to the visualization folder for that same date on the host machine recursively"
+    aws s3 cp s3://issacs-gpr-dev/Smallbox/IMU_Data/DataLogs-"$1"/ /mnt/c/Users/gabee/Visualization/IMU\ Bin\ Files/"$1"/  --recursive 
+}
+ 
+function dfile -d "download something to somewhere"
+    aws s3 cp "$1" "$2" 
+}
+
+function drec -d "download something to somewhere recursively"
+    aws s3 cp "$1" "$2" --recursive 
+}
+
+
+# Testing
+# --------------------------------------------------------------------
+
+# upload the data from July 16th 2019 back to the lambda bucket so that it is processed again
+function test16 -d ""
+    aws s3 cp s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ s3://issacs-lambda-dev/Ammobox/IMU_Data/DataLogs-20190716/ --recursive 
+}
+
+
+
+
+
+
+
+
+
+
+
