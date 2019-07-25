@@ -158,10 +158,14 @@ end
 
 
 
+########### FISH ##############
 
+set -g theme_show_exit_status yes
+set -g theme_display_date 
+set -g theme_display_cmd_duration no
+set -g theme_title_use_abbreviated_path yes
 
-
-
+set -g theme_color_scheme dark
 
 
 
