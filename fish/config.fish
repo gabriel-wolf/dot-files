@@ -41,6 +41,14 @@ function updatefish -d "update fish functions"
     . ~/.config/fish/config.fish
 end
 
+function ff -d "find file with fzf"
+    fzf
+end
+
+function fp -d "find file using preview in fzf"
+    fzf --preview="head {}" --preview-window=up:30% 
+end
+
 
 # Git
 # --------------------------------------------------------------------
