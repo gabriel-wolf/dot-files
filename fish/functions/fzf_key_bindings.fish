@@ -1,0 +1,1 @@
+/home/gabe/.fzf/shell/key-bindings.fish
