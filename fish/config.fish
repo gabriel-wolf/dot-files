@@ -88,6 +88,9 @@ function lessbin -d "open a text output of a .bin file in less"
     xxd $argv[1] | less 
 end
 
+function lessbintxt -d "open a text output of a .bin file in less into a text file of the same name until interupted or finished" 
+    xxd $argv[1] | less >> $argv[1].txt
+end
 
 # Navigation
 # --------------------------------------------------------------------
