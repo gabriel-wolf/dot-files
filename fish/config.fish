@@ -1,5 +1,10 @@
 # Fish shell
 
+
+if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+end
+
 egrep "^export " ~/.profile | while read e
 	set var (echo $e | sed -E "s/^export ([A-Z_]+)=(.*)\$/\1/")
 	set value (echo $e | sed -E "s/^export ([A-Z_]+)=(.*)\$/\2/")
@@ -63,7 +68,8 @@ end
 # --------------------------------------------------------------------
 
 function sourcerc -d "apply bashrc changes to current bash session"
-    source ~/config/bash/.bashrc
+    bash -c "source ~/config/bash/.bashrc"
+    fish
 end
 
 
@@ -176,4 +182,9 @@ set -g theme_title_use_abbreviated_path yes
 set -g theme_color_scheme dark
 
 
+
+############ VIRTUAL ENV ###########
+eval (python3 -m virtualfish auto_activation global_requirements compat_aliases)
+source /home/gabe/.virtualenvs/signalenv/bin/activate.fish
+deactivate
 

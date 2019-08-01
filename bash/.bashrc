@@ -11,7 +11,6 @@
 # If not running interactively, don't do anything
 iatest=$(expr index "$-" i)
 
-
 # Expand the history size
 export HISTFILESIZE=10000
 export HISTSIZE=500
